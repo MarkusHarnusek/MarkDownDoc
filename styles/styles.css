@@ -311,12 +311,17 @@ footer {
 	margin-right: 0.5%;
 }
 
-.header-text {
+.header-text,
+.header-text-page {
 	font-size: 20px;
 	font-weight: 600;
 	font-family: league-spartan;
 	color: var(--header-text-color);
 	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-text-page {
+	margin-left: 5%;
 }
 
 .header-controls {

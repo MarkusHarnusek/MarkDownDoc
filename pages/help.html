@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../styles/styles.css" />
 		<link rel="stylesheet" href="../tools/markdown-converter/markdown-styles.css" />
-		<link rel="icon" href="../assets/img/camera-drone.svg" type="image/svg+xml" />
+		<link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" /> <!-- Change the favicon here -->
 
 		<!-- Apply dark mode immediately before body renders to prevent flashbang -->
 		<script>
@@ -21,6 +21,26 @@
 		<script type="module">
 			import MarkdownConverter from "../tools/markdown-converter/markdown-converter.js";
 
+			// Light/Dark mode toggle function
+			window.lightDarkModeToggle = function() {
+				const html = document.documentElement;
+				const toggleButton = document.getElementById("lightDarkToggle");
+				const toggleIcon = toggleButton.querySelector(".icon");
+				const toggleText = toggleButton.querySelector(".icon-text");
+
+				html.classList.toggle("dark-mode");
+
+				if (html.classList.contains("dark-mode")) {
+					toggleIcon.src = "../assets/img/light.svg";
+					toggleText.textContent = "Light Mode";
+					localStorage.setItem("theme", "dark");
+				} else {
+					toggleIcon.src = "../assets/img/dark.svg";
+					toggleText.textContent = "Dark Mode";
+					localStorage.setItem("theme", "light");
+				}
+			};
+
 			document.addEventListener("DOMContentLoaded", async () => {
 				const converter = new MarkdownConverter([], []);
 				const md = await converter.loadMarkdown("../assets/pages/help.md");
@@ -35,14 +55,14 @@
 				}
 			});
 		</script>
-		<title>Drones Documentation</title>
+		<title>Help</title>
 	</head>
 
 	<body>
 		<header>
 			<div class="header-logo">
-				<img src="../assets/img/camera-drone.svg" class="header-image" alt="Drone Logo" />
-				<p class="header-text">Drones Documentation</p>
+				<!-- Add a icon in the title here `<img src="../assets/img/icon.svg" class="header-image" alt="Logo" />` -->
+				<p class="header-text-page">Drones Documentation</p> <!-- Change the title here -->
 				<div class="header-controls">
 					<div class="header-search-bar" style="visibility: hidden">
 						<img class="icon search-icon" src="../assets/img/search.svg" alt="search-icon" />

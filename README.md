@@ -7,6 +7,7 @@
 - [Mode icons created by amoghdesign - Flaticon](https://www.flaticon.com/free-icons/mode)
 - [Dark icons created by adriansyah - Flaticon](https://www.flaticon.com/free-icons/dark)
 - [Wrong icons created by I Wayan Wika - Flaticon](https://www.flaticon.com/free-icons/wrong)
+- [Docs icons created by Driss Lebbat](https://www.flaticon.com/free-icon/docs_2504717)
 
 #### FontAwesome Icons
 - [Triangle Exclamation](https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/triangle-exclamation.svg?v=2&token=a463935e93)
