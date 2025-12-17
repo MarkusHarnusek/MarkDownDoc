@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="AeroMesh Drones Documentation - Comprehensive guide for building, programming, and flying drones." />
 
-		<link rel="stylesheet" href="./styles/styles.css" />
-		<link rel="stylesheet" href="./styles/markdown-styles.css" />
-		<link rel="icon" href="./assets/img/camera-drone.svg" type="image/svg+xml" />
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../tools/markdown-converter/markdown-styles.css" />
+		<link rel="icon" href="../assets/img/camera-drone.svg" type="image/svg+xml" />
 
 		<!-- Apply dark mode immediately before body render -->
 		<script>
@@ -23,7 +23,7 @@
 					if (toggleButton && savedTheme === "dark") {
 						const toggleIcon = toggleButton.querySelector(".icon");
 						const toggleText = toggleButton.querySelector(".icon-text");
-						toggleIcon.src = "assets/img/light.svg";
+						toggleIcon.src = "../assets/img/light.svg";
 						toggleText.textContent = "Light Mode";
 					}
 				}
@@ -35,9 +35,9 @@
 			})();
 		</script>
 
-		<script type="module" src="./scripts/script.js"></script>
-		<script type="module" src="./scripts/md-converter.js"></script>
-		<script type="module" src="./scripts/content-browser.js"></script>
+		<script type="module" src="../scripts/script.js"></script>
+		<script type="module" src="../tools/markdown-converter/markdown-converter.js"></script>
+		<script type="module" src="../scripts/content-browser.js"></script>
 		<title>AeroMesh Drones Documentation</title>
 	</head>
 
@@ -47,13 +47,13 @@
 			<div class="header-logo">
 				<!-- Sidebar toggle as an icon-only control placed top-left -->
 				<button id="topicToggle" class="topic-toggle" aria-label="Toggle sidebar" aria-expanded="false">
-					<img class="topic-toggle-icon" src="assets/img/hamburger.svg" alt="menu" />
+					<img class="topic-toggle-icon" src="../assets/img/hamburger.svg" alt="menu" />
 				</button>
-				<img src="assets/img/camera-drone.svg" class="header-image" alt="Drone Logo" />
+				<img src="../assets/img/camera-drone.svg" class="header-image" alt="Drone Logo" />
 				<p class="header-text">AeroMesh Drones</p>
 				<div class="header-controls">
 					<div class="header-search-bar">
-						<img class="icon search-icon" src="assets/img/search.svg" alt="search-icon" />
+						<img class="icon search-icon" src="../assets/img/search.svg" alt="search-icon" />
 						<input type="text" onfocus="searchbarFocus()" onblur="searchbarBlur()" oninput="searchbarSearch()" id="searchInput" placeholder="Search documentation..." />
 						<div id="searchPopup" class="search-popup">
 							<!-- Popup content goes here -->
@@ -63,7 +63,7 @@
 						</div>
 					</div>
 					<button id="lightDarkToggle" onclick="lightDarkModeToggle()">
-						<img class="icon" src="assets/img/dark.svg" alt="modeswitch-icon" />
+						<img class="icon" src="../assets/img/dark.svg" alt="modeswitch-icon" />
 						<span class="icon-text">Dark Mode</span>
 					</button>
 				</div>
@@ -76,7 +76,7 @@
 			<div class="content-container">
 				<div class="topic-selector">
 					<button id="topicClose" class="topic-close" aria-label="Close sidebar">
-						<img src="assets/img/cancel.svg" alt="close" />
+						<img src="../assets/img/cancel.svg" alt="close" />
 					</button>
 					<!-- Loading of topics will use class "topic-category" for headers of categories -->
 				</div>
@@ -87,7 +87,7 @@
 				</div>
 				<div class="right-panel">
 					<button class="copy-button" id="copyButton" onclick="copyButtonTrigger()">
-						<img class="icon" src="assets/img/copy.svg" alt="copy-icon" />
+						<img class="icon" src="../assets/img/copy.svg" alt="copy-icon" />
 						<span class="icon-text">Copy</span>
 					</button>
 					<div id="right-panel-header"></div>

@@ -11,7 +11,7 @@
  */
 class MarkdownConverter {
 	/** @type {path} - The path where the image assets are found */
-	imagePath = `./src/assets/img/`;
+	imagePath = `../tools/markdown-converter/assets/img/`;
 
 	/** @type {number} - Counter for unique heading IDs */
 	headingCount;
@@ -519,6 +519,40 @@ class MarkdownConverter {
 		// Line breaks
 		if (line.trim() === "") {
 			return "<br>";
+		}
+
+		// End signature - navigation links to previous/next pages
+		if (line.trim() === "#end") {
+			let item = `<div class="markdown-end-container">`;
+
+			// If previous item exists
+			if (this.currentPageIndex !== 0) {
+				const previousPath = this.flatStructure[this.currentPageIndex - 1];
+				const previousName = this.getPageName(previousPath);
+				item += `<div class="markdown-end-next" data-path="${previousPath}">
+                            <img class="markdown-end-icon-previous" src="../assets/img/arrow.svg" alt="next-icon"></img>
+                            <div class="markdown-end-content-p">
+                                <p class="markdown-end-label">Previous</p>
+                                <p class="markdown-end-title">${previousName}</p>
+                            </div>
+                         </div>`;
+			}
+
+			// If next item exists
+			if (this.currentPageIndex !== this.flatStructure.length - 1) {
+				const nextPath = this.flatStructure[this.currentPageIndex + 1];
+				const nextName = this.getPageName(nextPath);
+				item += `<div class="markdown-end-next" data-path="${nextPath}">
+                            <div class="markdown-end-content-n">
+                                <p class="markdown-end-label">Next</p>
+                                <p class="markdown-end-title">${nextName}</p>
+                            </div>
+                            <img class="markdown-end-icon" src="../assets/img/arrow.svg" alt="next-icon"></img>
+                         </div>`;
+			}
+
+			item += `</div>`;
+			return item;
 		}
 
 		return `<p class="markdown-paragraph">${this.parseInline(line)}</p>`;

@@ -557,6 +557,109 @@ body {
 	font-size: larger;
 }
 
+/* Navigation End Container */
+.markdown-end-container {
+	display: flex;
+	width: 100%;
+	margin: 0 auto;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.markdown-end-previous,
+.markdown-end-next {
+	padding: 0.7rem;
+	border: solid 1px var(--md-button-container);
+	width: 100%;
+	text-align: left;
+	border-radius: 5px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.3rem;
+	transition: all 0.2s ease;
+}
+
+.markdown-end-content-p {
+	display: flex;
+	align-items: end;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+.markdown-end-content-n {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+.markdown-end-icon {
+	width: 20px;
+	height: 20px;
+	opacity: 0.6;
+	transition: opacity 0.2s ease, transform 0.2s ease, filter 0.3s ease;
+	flex-shrink: 0;
+}
+
+.markdown-end-icon-previous {
+	width: 20px;
+	height: 20px;
+	opacity: 0.6;
+	transition: opacity 0.2s ease, transform 0.2s ease, filter 0.3s ease;
+	flex-shrink: 0;
+	transform: rotate(180deg);
+}
+
+:root.dark-mode .markdown-end-icon,
+:root.dark-mode .markdown-end-icon-previous {
+	filter: brightness(0) saturate(100%) invert(100%);
+}
+
+.markdown-end-next:hover .markdown-end-icon {
+	opacity: 1;
+	transform: translateX(3px);
+}
+
+.markdown-end-next:hover .markdown-end-icon-previous {
+	opacity: 1;
+	transform: rotate(180deg) translateX(3px);
+}
+
+.markdown-end-previous:hover,
+.markdown-end-next:hover {
+	border-color: var(--md-button-container-hover);
+}
+
+.markdown-end-previous:hover .markdown-end-title,
+.markdown-end-next:hover .markdown-end-title {
+	color: rgb(44, 98, 245);
+}
+
+.markdown-end-previous {
+	align-self: flex-start;
+}
+
+.markdown-end-next {
+	align-self: flex-end;
+}
+
+.markdown-end-label {
+	font-size: 0.85rem;
+	margin: 0;
+	padding: 0;
+	opacity: 0.7;
+	font-weight: 500;
+}
+
+.markdown-end-title {
+	font-size: 1.1rem;
+	margin: 0;
+	font-weight: 600;
+	transition: color 0.2s ease;
+}
+
 /* Calculation Display */
 .markdown-calculation {
 	padding: 1rem;

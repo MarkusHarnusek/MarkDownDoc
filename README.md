@@ -12,3 +12,10 @@
 - [Triangle Exclamation](https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/triangle-exclamation.svg?v=2&token=a463935e93)
 - [Circle Check](https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/circle-check.svg?v=2&token=a463935e93)
 - [Circle Info](https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/circle-info.svg?v=2&token=a463935e93)
+
+
+# TODO
+
+- Credit flo
+- Add sources elemnt to md converter and add it to its repo
+- Change favicon

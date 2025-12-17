@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./styles/styles.css" />
-		<link rel="stylesheet" href="./styles/markdown-styles.css" />
-		<link rel="icon" href="./assets/img/camera-drone.svg" type="image/svg+xml" />
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../tools/markdown-converter/markdown-styles.css" />
+		<link rel="icon" href="../assets/img/camera-drone.svg" type="image/svg+xml" />
 
 		<!-- Apply dark mode immediately before body renders to prevent flashbang -->
 		<script>
@@ -19,11 +19,11 @@
 
 		<!-- defer module loading; page will import modules when needed -->
 		<script type="module">
-			import MarkdownConverter from "./scripts/md-converter.js";
+			import MarkdownConverter from "../tools/markdown-converter/markdown-converter.js";
 
 			document.addEventListener("DOMContentLoaded", async () => {
 				const converter = new MarkdownConverter([], []);
-				const md = await converter.loadMarkdown("assets/pages/help.md");
+				const md = await converter.loadMarkdown("../assets/pages/help.md");
 				const html = converter.convert(md, "pages/help.md");
 				document.getElementById("markdown-container").innerHTML = html;
 
@@ -31,7 +31,7 @@
 				const savedTheme = localStorage.getItem("theme");
 				const toggleButton = document.getElementById("lightDarkToggle");
 				if (savedTheme === "dark" && toggleButton) {
-					toggleButton.innerHTML = '<img class="icon" src="assets/img/dark.svg" alt="modeswitch-icon"></img><span class="icon-text">Light Mode</span>';
+					toggleButton.innerHTML = '<img class="icon" src="../assets/img/dark.svg" alt="modeswitch-icon"></img><span class="icon-text">Light Mode</span>';
 				}
 			});
 		</script>
@@ -41,15 +41,15 @@
 	<body>
 		<header>
 			<div class="header-logo">
-				<img src="assets/img/camera-drone.svg" class="header-image" alt="Drone Logo" />
+				<img src="../assets/img/camera-drone.svg" class="header-image" alt="Drone Logo" />
 				<p class="header-text">Drones Documentation</p>
 				<div class="header-controls">
 					<div class="header-search-bar" style="visibility: hidden">
-						<img class="icon search-icon" src="assets/img/search.svg" alt="search-icon" />
+						<img class="icon search-icon" src="../assets/img/search.svg" alt="search-icon" />
 						<input type="text" id="searchInput" placeholder="Search documentation..." disabled />
 					</div>
 					<button id="lightDarkToggle" onclick="lightDarkModeToggle()">
-						<img class="icon" src="assets/img/light.svg" alt="modeswitch-icon" />
+						<img class="icon" src="../assets/img/light.svg" alt="modeswitch-icon" />
 						<span class="icon-text">Dark Mode</span>
 					</button>
 				</div>
