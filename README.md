@@ -20,3 +20,4 @@
 - Credit flo
 - Add sources elemnt to md converter and add it to its repo
 - Change favicon
+- Left bar bottom margin

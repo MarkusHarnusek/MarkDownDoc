@@ -487,6 +487,9 @@ class MarkdownConverter {
 		// Button signatures: #b prefix with optional ID
 		if (/^#bh\(([^)]+)\)\s/.test(line)) {
 			const match = line.match(/^#bh\(([^)]+)\)\s(.*)$/);
+			if (!match) {
+				return `<p class="markdown-paragraph">${this.parseInline(line)}</p>`;
+			}
 			const id = match[1];
 			const content = match[2];
 			return `SIGNATURE_START:button:heading:${this.parseInline(content)}:${id}`;
