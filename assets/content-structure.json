@@ -6,49 +6,25 @@
   },
   {
     "type": "category",
-    "name": "📋 Prerequisites",
-    "collapsed": false,
+    "name": "Category",
     "children": [
       {
         "type": "category",
-        "name": "🔧 Parts List",
-        "path": "content/parts-list.md",
+        "name": "Topic Category",
+        "path": "content/topic-category.md",
         "collapsed": true,
         "children": [
           {
             "type": "page",
-            "name": "💰 Budget",
+            "name": "Topic Category Subpage 1",
             "path": "content/budget.md"
           },
           {
             "type": "page",
-            "name": "🛒 Where to Order",
+            "name": "Topic Category Subpage 2",
             "path": "content/where-to-order.md"
           }
         ]
-      },
-      {
-        "type": "category",
-        "name": "💻 Software List",
-        "path": "content/software-list.md",
-        "collapsed": true,
-        "children": [
-          {
-            "type": "page",
-            "name": "⚙️ Software Setup",
-            "path": "content/software-setup.md"
-          }
-        ]
-      },
-      {
-        "type": "page",
-        "name": "🎓 Skills Needed",
-        "path": "content/skills-needed.md"
-      },
-      {
-        "type": "page",
-        "name": "⚠️ Safety and Legal Preparations",
-        "path": "content/safety-legal.md"
       }
     ]
   }
