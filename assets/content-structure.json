@@ -17,12 +17,12 @@
           {
             "type": "page",
             "name": "Topic Category Subpage 1",
-            "path": "content/budget.md"
+            "path": "content/topic-category-subpage-1.md"
           },
           {
             "type": "page",
             "name": "Topic Category Subpage 2",
-            "path": "content/where-to-order.md"
+            "path": "content/topic-category-subpage-2.md"
           }
         ]
       }

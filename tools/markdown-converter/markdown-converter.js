@@ -8,6 +8,16 @@
  * - Supports custom signature blocks (positive, warning, negative, info)
  * - Generates tables with proper styling
  * - Navigation links between pages
+ * - Source references with expandable list (#src[text](link))
+ * 
+ * Required global functions (must be defined in the consuming application):
+ * - copyCodeBlock(button) - Handles copying code block content to clipboard
+ * - toggleSources(id) - Toggles the expanded state of a sources block
+ *   Example implementation:
+ *   function toggleSources(id) {
+ *       const element = document.getElementById(id);
+ *       if (element) element.classList.toggle('expanded');
+ *   }
  */
 class MarkdownConverter {
 	/** @type {path} - The path where the image assets are found */
@@ -84,6 +94,7 @@ class MarkdownConverter {
 		let currentFormattedCodeLang = "";
 		let formattedCodeContent = [];
 		let formattedCodePlainText = [];
+		let pendingSources = [];
 
 		// Process each line of markdown
 		for (const line of lines) {
@@ -133,8 +144,88 @@ class MarkdownConverter {
 				calculationContent = [];
 			} else if (inCalculation) {
 				// Accumulate calculation content
-				calculationContent.push(this.escapeHtml(line));
-			} else if (/^```/.test(line)) {
+				calculationContent.push(this.escapeHtml(line));		} else if (/^#src\[([^\]]+)\]\(([^)]+)\)/.test(line)) {
+			// Source reference - collect consecutive sources
+			const match = line.match(/^#src\[([^\]]+)\]\(([^)]+)\)/);
+			pendingSources.push({ text: match[1], link: match[2] });
+		} else if (pendingSources.length > 0) {
+			// Non-source line encountered - flush pending sources
+			htmlLines.push(this.generateSourcesHTML(pendingSources));
+			pendingSources = [];
+			// Continue processing current line
+			if (this.isTableRow(line)) {
+				// Handle table parsing (check for headers and separators)
+				if (!inTable) {
+					// Close any open lists
+					if (inUnorderedList) {
+						htmlLines.push("</ul>");
+						inUnorderedList = false;
+					}
+					if (inOrderedList) {
+						htmlLines.push("</ol>");
+						inOrderedList = false;
+					}
+
+					// Check if next line is separator to determine if this is a header
+					const nextLineIndex = lines.indexOf(line) + 1;
+					const nextLine = nextLineIndex < lines.length ? lines[nextLineIndex] : "";
+
+					if (this.isTableSeparator(nextLine)) {
+						htmlLines.push('<table class="markdown-table">');
+						htmlLines.push("<thead>");
+						htmlLines.push(this.parseTableRow(line, true));
+						htmlLines.push("</thead>");
+						htmlLines.push("<tbody>");
+						inTable = true;
+						tableHeaders = this.extractTableHeaders(line);
+					} else {
+						htmlLines.push('<table class="markdown-table">');
+						htmlLines.push("<tbody>");
+						htmlLines.push(this.parseTableRow(line, false));
+						inTable = true;
+					}
+				} else {
+					if (!this.isTableSeparator(line)) {
+						htmlLines.push(this.parseTableRow(line, false));
+					}
+				}
+			} else if (/^(\*|\-|\+)\s/.test(line)) {
+				if (!inUnorderedList) {
+					htmlLines.push('<ul class="markdown-list">');
+					inUnorderedList = true;
+				}
+				if (inOrderedList) {
+					htmlLines.push("</ol>");
+					inOrderedList = false;
+				}
+				htmlLines.push(this.parseLine(line));
+			} else if (/^\d+\.\s/.test(line)) {
+				if (!inOrderedList) {
+					htmlLines.push('<ol class="markdown-ordered-list-spaced">');
+					inOrderedList = true;
+				}
+				if (inUnorderedList) {
+					htmlLines.push("</ul>");
+					inUnorderedList = false;
+				}
+				htmlLines.push(this.parseLine(line));
+			} else {
+				if (inTable) {
+					htmlLines.push("</tbody>");
+					htmlLines.push("</table>");
+					inTable = false;
+					tableHeaders = [];
+				}
+				if (inUnorderedList) {
+					htmlLines.push("</ul>");
+					inUnorderedList = false;
+				}
+				if (inOrderedList) {
+					htmlLines.push("</ol>");
+					inOrderedList = false;
+				}
+				htmlLines.push(this.parseLine(line));
+			}			} else if (/^```/.test(line)) {
 				// Toggle standard code block on/off
 				if (inCodeBlock) {
 					htmlLines.push("</pre>");
@@ -245,6 +336,10 @@ class MarkdownConverter {
 		if (inCalculation) {
 			// Close any unclosed calculation block
 			htmlLines.push(`<div class="markdown-calculation">${calculationContent.join("<br>")}</div>`);
+		}
+		if (pendingSources.length > 0) {
+			// Flush any remaining sources
+			htmlLines.push(this.generateSourcesHTML(pendingSources));
 		}
 
 		// Process signature block markers and return final HTML
@@ -739,6 +834,37 @@ class MarkdownConverter {
 			return null;
 		};
 		return findName(this.contentStructure) || "Unknown Page";
+	}
+
+	/**
+	 * Generates HTML for a sources block with expandable list
+	 * @param {Object[]} sources - Array of source objects with text and link properties
+	 * @returns {string} - HTML for the sources block
+	 */
+	generateSourcesHTML(sources) {
+		const count = sources.length;
+		const displayCount = count > 9 ? "9+" : count.toString();
+		const uniqueId = `sources-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+		let html = `<div class="markdown-sources" id="${uniqueId}">`;
+		html += `<div class="markdown-sources-header" onclick="toggleSources('${uniqueId}')">`;
+		html += `<span class="markdown-sources-count">${displayCount}</span>`;
+		html += `<span class="markdown-sources-label">Sources</span>`;
+		html += `</div>`;
+		html += `<div class="markdown-sources-list">`;
+
+		for (let i = 0; i < sources.length; i++) {
+			const source = sources[i];
+			html += `<a href="${source.link}" target="_blank" class="markdown-sources-item">`;
+			html += `<span class="markdown-sources-item-number">${i + 1}.</span>`;
+			html += `<span class="markdown-sources-item-text">${this.escapeHtml(source.text)}</span>`;
+			html += `</a>`;
+		}
+
+		html += `</div>`;
+		html += `</div>`;
+
+		return html;
 	}
 
 	/**

@@ -672,12 +672,31 @@ body.sidebar-open .topic-selector {
 	flex: 0 0 20%;
 	padding: 1rem;
 	min-height: 400px;
+	display: flex;
+	flex-direction: column;
+}
+
+#right-panel-header {
+	max-height: calc(100vh - 200px);
+	overflow-y: auto;
+}
+
+#right-panel-header::-webkit-scrollbar {
+	width: 3px;
+}
+
+#right-panel-header::-webkit-scrollbar-thumb {
+	background: #bebebe;
+}
+
+#right-panel-header::-webkit-scrollbar-thumb:hover {
+	background: #999999;
 }
 
 .right-bar-list {
 	padding: 0;
-	margin: 0;
 	width: 75%;
+	overflow: hidden;
 }
 
 .right-bar-items {

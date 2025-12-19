@@ -51,6 +51,10 @@ function greet() {
 #ih Info Heading  
 #ib This is an informational message.
 
+#### Sources
+#src[MarkDown Converter](https://github.com/MarkusHarnusek/MarkDownConverter)
+#src[MarkDown Doc](https://github.com/MarkusHarnusek/MarkDownDoc)
+
 #### Calculations
 #cal
 √(a² + b²) * log(c + 1) / (1 + e^(−d))

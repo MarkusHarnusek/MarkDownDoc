@@ -18,6 +18,4 @@
 # TODO
 
 - Credit flo
-- Add sources elemnt to md converter and add it to its repo
-- Change favicon
-- Left bar bottom margin
+- Add sources element to md converter and add it to its repo
