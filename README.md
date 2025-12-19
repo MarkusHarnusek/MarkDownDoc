@@ -1,21 +1,48 @@
+# Markdown Doc
+
+Build documentation fast and easy.
+
+## What is MarkDown Doc?
+
+MarkDown Doc is a streamlined template designed to simplify the process of creating documentation. By writing content in MarkDown, you can maintain an efficient workflow while organizing your pages effortlessly through a configuration file.
+
+## How does MarkDown Doc work?
+
+You create your documentation as `.md` files, which are then processed using an adapted version of the [MarkDown Converter](https://github.com/MarkusHarnusek/MarkDownConverter) (details about the modifications can be found [here](./docs/markdown-converter-changes.md)). This tool converts the MarkDown content into well-formatted `HTML` pages.
+
+## What are MarkDown Doc's main features?
+
+### Sorting Pages and Categories
+
+A navigable list of pages in your documentation is displayed on the left side of the interface, allowing you to easily browse and access different sections.
+
+### Main View
+
+The main view displays the content loaded from your MarkDown files, providing a clean and readable layout.
+
+### Scroll to Headings
+
+Quickly navigate to specific sections on the current page using the right-hand sidebar, which lists all headings.
+
+### Search
+
+Use the search bar to find specific terms or topics within your documentation effortlessly.
+
+### Help & Credits Pages
+
+Create and customize help and credits pages by writing them in MarkDown, just like the rest of your documentation.
+
+## How do I build my own documentation?
+
+1. Clone the repository: `git clone https://github.com/MarkusHarnusek/MarkDownConverter.git`
+2. Explore the customized [MarkDown Converter](https://github.com/MarkusHarnusek/MarkDownConverter).
+3. Learn how to build documentation [here](./docs/create-doc.md).
+4. Start creating.
+
 ## Credits
-### Icons
-#### Flaticon Icons
-- [Camera drone icons created by vectorsmarket15 - Flaticon](https://www.flaticon.com/free-icons/camera-drone)
-- [Next icons created by Roundicons - Flaticon](https://www.flaticon.com/free-icons/next)
-- [Ui icons created by shin_icons - Flaticon](https://www.flaticon.com/free-icons/ui)
-- [Mode icons created by amoghdesign - Flaticon](https://www.flaticon.com/free-icons/mode)
-- [Dark icons created by adriansyah - Flaticon](https://www.flaticon.com/free-icons/dark)
-- [Wrong icons created by I Wayan Wika - Flaticon](https://www.flaticon.com/free-icons/wrong)
-- [Docs icons created by Driss Lebbat](https://www.flaticon.com/free-icon/docs_2504717)
 
-#### FontAwesome Icons
-- [Triangle Exclamation](https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/triangle-exclamation.svg?v=2&token=a463935e93)
-- [Circle Check](https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/circle-check.svg?v=2&token=a463935e93)
-- [Circle Info](https://ka-p.fontawesome.com/releases/v6.6.0/svgs/regular/circle-info.svg?v=2&token=a463935e93)
+### Co-Authoring
 
+This project has been actively co-developed together with [7XDev](https://github.com/7XDev)
 
-# TODO
-
-- Credit flo
-- Add sources element to md converter and add it to its repo
+View additional credits [here](./docs/credits.md)
